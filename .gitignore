@@ -1,0 +1,4 @@
+src/config.ts
+dist
+data
+node_modules
