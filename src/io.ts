@@ -5,6 +5,7 @@ import {
   appendFile,
   mkdir,
   readdir,
+  rm,
   stat,
   writeFile,
 } from "fs/promises";
@@ -119,6 +120,12 @@ export async function dailyWork() {
       });
     }
     await delay(2000);
+  }
+  if (new Date().getDay() === 4) {
+    ilog("delete file cache");
+    await rm(GlobalConfig.dataPath, { recursive: true, force: true });
+    await initData();
+    ilog("delete successfully");
   }
   ilog("end daily task");
 }
